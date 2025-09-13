@@ -22,7 +22,9 @@ public class ClienteRepository {
 
             new SimpleStringProperty("urb.flores"),
 
-            new SimpleStringProperty("9123124123")));
+            new SimpleStringProperty("9123124123"),
+
+            new SimpleBooleanProperty(true)));
 
         return clientes;
     }

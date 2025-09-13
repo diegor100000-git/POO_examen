@@ -7,7 +7,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pe.edu.upeu.sistema_biblioteca.control.ClienteController">
    <children>
-      <VBox layoutX="72.0" layoutY="22.0" prefHeight="496.0" prefWidth="800.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+      <VBox layoutX="72.0" layoutY="22.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
          <children>
             <AnchorPane prefHeight="56.0" prefWidth="1285.0">
                <children>
@@ -20,7 +20,7 @@
             </AnchorPane>
             <AnchorPane prefHeight="430.0" prefWidth="800.0">
                <children>
-                  <HBox layoutY="101.0" prefHeight="280.0" prefWidth="516.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                  <HBox layoutY="101.0" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
                      <children>
                         <GridPane>
                           <columnConstraints>
@@ -82,16 +82,16 @@
                                     <Insets right="5.0" />
                                  </GridPane.margin>
                               </Button>
-                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                              <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#cancelar" text="Cancelar" GridPane.columnIndex="2" GridPane.rowIndex="6">
                                  <GridPane.margin>
                                     <Insets left="5.0" />
                                  </GridPane.margin>
                               </Button>
                            </children>
                         </GridPane>
-                        <AnchorPane prefHeight="409.0" prefWidth="379.0">
+                        <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="409.0" prefWidth="874.0">
                            <children>
-                              <TableView fx:id="tableView" maxWidth="1.7976931348623157E308" prefWidth="800.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                              <TableView fx:id="tableView" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="399.0" prefWidth="503.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="5.0" />
                            </children>
                         </AnchorPane>
                      </children>

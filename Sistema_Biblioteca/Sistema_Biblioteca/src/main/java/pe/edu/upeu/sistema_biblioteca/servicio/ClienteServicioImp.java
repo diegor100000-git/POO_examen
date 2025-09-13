@@ -18,7 +18,7 @@ public class ClienteServicioImp extends ClienteRepository implements ClienteServ
     @Override
     public List<Cliente> findAll() {
         if(clientes.isEmpty()) {
-            return List.of();
+            return super.findAll();
         }
         return  clientes;
     }

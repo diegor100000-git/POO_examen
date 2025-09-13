@@ -16,6 +16,7 @@ public class Cliente {
     private StringProperty nombre;
     private StringProperty direccion;
     private StringProperty telefono;
+    private BooleanProperty estado;
 
 
 

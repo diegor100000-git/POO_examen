@@ -38,10 +38,14 @@ public class ClienteController {
     public void definirNombresColumnas(){
         dniCol = new TableColumn("DNI");
         apellidoCol = new TableColumn("Apellidos");
+        apellidoCol.setMinWidth(180);
         nombreCol = new TableColumn("Nombres");
+        nombreCol.setMinWidth(180);
         direccionCol = new TableColumn("Direccion");
+        direccionCol.setMinWidth(180);
         telefonoCol = new TableColumn("Telefono");
         opcionCol = new TableColumn<>("opciones");
+        opcionCol.setMinWidth(160);
         tableView.getColumns().addAll(dniCol, nombreCol, apellidoCol,direccionCol,telefonoCol,opcionCol);
     }
     public void agregarAccionBotones(){
@@ -119,6 +123,14 @@ public class ClienteController {
     public void eliminarCliente(int index){
         ps.delete(index);
         listarClientes();
+    }
+
+    public void cancelar(){
+        txtDni.setText("");
+        txtApellidos.setText("");
+        txtNombres.setText("");
+        txtDireccion.setText("");
+        txtTelefono.setText("");
     }
 
 }
