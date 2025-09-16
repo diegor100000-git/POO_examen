@@ -5,6 +5,7 @@ import javafx.beans.property.StringProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pe.edu.upeu.sistema_biblioteca.enums.TipoCliente;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,6 +17,7 @@ public class Cliente {
     private StringProperty nombre;
     private StringProperty direccion;
     private StringProperty telefono;
+    private TipoCliente tipoCliente;
     private BooleanProperty estado;
 
 

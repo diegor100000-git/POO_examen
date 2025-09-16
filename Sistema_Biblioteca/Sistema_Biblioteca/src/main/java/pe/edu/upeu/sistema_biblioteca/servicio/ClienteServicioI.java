@@ -1,5 +1,6 @@
 package pe.edu.upeu.sistema_biblioteca.servicio;
 
+import pe.edu.upeu.sistema_biblioteca.dto.PersonaDto;
 import  pe.edu.upeu.sistema_biblioteca.modelo.Cliente;
 
 import java.util.List;
@@ -14,6 +15,8 @@ public interface ClienteServicioI {
     void delete(int index);
 
     Cliente findById(int index);
+
+    PersonaDto findByDni(String dni);
 
 
 

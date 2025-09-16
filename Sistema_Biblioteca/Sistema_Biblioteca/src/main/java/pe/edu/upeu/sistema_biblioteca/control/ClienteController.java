@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import pe.edu.upeu.sistema_biblioteca.dto.PersonaDto;
+import pe.edu.upeu.sistema_biblioteca.enums.TipoCliente;
 import pe.edu.upeu.sistema_biblioteca.modelo.Cliente;
 import pe.edu.upeu.sistema_biblioteca.servicio.ClienteServicioI;
 
@@ -22,9 +24,12 @@ public class ClienteController {
     int indexE=-1;
 
     @FXML
+    private ComboBox<TipoCliente>cbxTipoCliente;
+
+    @FXML
     TableView<Cliente> tableView;
     ObservableList<Cliente> clientes;
-    TableColumn<Cliente, String> dniCol,apellidoCol,nombreCol,direccionCol,telefonoCol;
+    TableColumn<Cliente, String> dniCol,apellidoCol,nombreCol,direccionCol,telefonoCol,tipoClienteCol;
     TableColumn<Cliente, Void> opcionCol;
 
     @Autowired
@@ -32,6 +37,7 @@ public class ClienteController {
 
     @FXML
     public void initialize(){
+        cbxTipoCliente.getItems().setAll(TipoCliente.values());
         definirNombresColumnas();
         listarClientes();
     }
@@ -44,9 +50,10 @@ public class ClienteController {
         direccionCol = new TableColumn("Direccion");
         direccionCol.setMinWidth(180);
         telefonoCol = new TableColumn("Telefono");
+        tipoClienteCol=new TableColumn<>("Tipo Cliente");
         opcionCol = new TableColumn<>("opciones");
         opcionCol.setMinWidth(160);
-        tableView.getColumns().addAll(dniCol, nombreCol, apellidoCol,direccionCol,telefonoCol,opcionCol);
+        tableView.getColumns().addAll(dniCol, nombreCol, apellidoCol,direccionCol,telefonoCol,tipoClienteCol,opcionCol);
     }
     public void agregarAccionBotones(){
         Callback<TableColumn<Cliente, Void>, TableCell<Cliente,Void >> cellFactory = param-> new TableCell<>() {
@@ -81,12 +88,25 @@ public class ClienteController {
         nombreCol.setCellValueFactory(cellData -> cellData.getValue().getNombre());
         direccionCol.setCellValueFactory(cellData -> cellData.getValue().getDireccion());
         telefonoCol.setCellValueFactory(cellData -> cellData.getValue().getTelefono());
+        tipoClienteCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getTipoCliente().toString()));
 
 
         agregarAccionBotones();
         clientes=FXCollections.observableArrayList(ps.findAll());
         tableView.setItems(clientes);
     }
+    @FXML
+    public void buscarPorDni(){
+        PersonaDto personaDto = ps.findByDni(txtDni.getText());
+        if(personaDto!=null){
+            txtNombres.setText(personaDto.getNombre());
+            txtApellidos.setText(personaDto.getApellidoPaterno()+" "+personaDto.getApellidoMaterno());
+        }else{
+            txtApellidos.setText("");
+            txtNombres.setText("");
+        }
+    }
+
     @FXML
     public void crearCliente(){
         Cliente cliente = new Cliente();
@@ -95,6 +115,7 @@ public class ClienteController {
         cliente.setNombre(new SimpleStringProperty(txtNombres.getText()));
         cliente.setDireccion(new SimpleStringProperty(txtDireccion.getText()));
         cliente.setTelefono(new SimpleStringProperty(txtTelefono.getText()));
+        cliente.setTipoCliente(cbxTipoCliente.getValue());
         if(indexE==-1){
             ps.save(cliente);
         }else{
@@ -110,6 +131,7 @@ public class ClienteController {
         txtNombres.setText("");
         txtDireccion.setText("");
         txtTelefono.setText("");
+        cbxTipoCliente.getSelectionModel().clearSelection();
     }
     public void editarCliente(Cliente c, int index){
         txtDni.setText(c.getDni().getValue());
@@ -117,6 +139,7 @@ public class ClienteController {
         txtNombres.setText(c.getNombre().getValue());
         txtDireccion.setText(c.getDireccion().getValue());
         txtTelefono.setText(c.getTelefono().getValue());
+        cbxTipoCliente.getSelectionModel().select(c.getTipoCliente());
 
         indexE=index;
     }
@@ -131,6 +154,7 @@ public class ClienteController {
         txtNombres.setText("");
         txtDireccion.setText("");
         txtTelefono.setText("");
+        cbxTipoCliente.getSelectionModel().clearSelection();
     }
 
 }
